@@ -1,7 +1,50 @@
 import React, { useState } from "react";
 import logo from "../assets/logo.png";
+import { useNavigate } from "react-router-dom";
+
+
+const InputField = ({ type, placeholder, value, onChange, icon, rightIcon, onRightClick }) => (
+  <div className="relative">
+    {icon && (
+      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300">
+        {icon}
+      </span>
+    )}
+    <input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      className={`w-full pl-10 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm text-gray-700 outline-none focus:border-[#71BCFF] focus:bg-white transition`}
+    />
+    {rightIcon && (
+      <button
+        onClick={onRightClick}
+        className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500"
+      >
+        {rightIcon}
+      </button>
+    )}
+  </div>
+);
+
+const Checkbox = ({ checked, onClick }) => (
+  <button
+    onClick={onClick}
+    className={`w-4 h-4 rounded border flex items-center justify-center transition ${
+      checked ? "bg-[#71BCFF] border-[#71BCFF]" : "border-gray-300 bg-white"
+    }`}
+  >
+    {checked && (
+      <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+      </svg>
+    )}
+  </button>
+);
 
 const Login = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(false);
   const [email, setEmail] = useState("");
@@ -21,15 +64,10 @@ const Login = () => {
           overflow: "hidden"
         }}
       >
-
         {/* Icon */}
         <div className="flex flex-col items-center mb-6">
           <div className="w-20 h-15 rounded-2xl bg-[#e8f4ff] flex items-center justify-center mb-6 ">
-            <img
-              src={logo}
-              alt="Sakina Logo"
-
-            />
+            <img src={logo} alt="Sakina Logo" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-1">Welcome to Sakina</h1>
           <p className="text-sm text-gray-400 text-center">Your journey to mental clarity starts here.</p>
@@ -38,20 +76,17 @@ const Login = () => {
         {/* Email */}
         <div className="mb-4">
           <label className="text-sm font-semibold text-gray-700 mb-1.5 block">Email Address</label>
-          <div className="relative">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300">
+          <InputField
+            type="email"
+            placeholder="name@example.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            icon={
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-            </span>
-            <input
-              type="email"
-              placeholder="name@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm text-gray-700 outline-none focus:border-[#71BCFF] focus:bg-white transition"
-            />
-          </div>
+            }
+          />
         </div>
 
         {/* Password */}
@@ -60,24 +95,18 @@ const Login = () => {
             <label className="text-sm font-semibold text-gray-700">Password</label>
             <a href="#" className="text-xs text-[#71BCFF] hover:underline">Forgot?</a>
           </div>
-          <div className="relative">
-            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300">
+          <InputField
+            type={showPassword ? "text" : "password"}
+            placeholder="••••••••"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            icon={
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
-            </span>
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full pl-10 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm text-gray-700 outline-none focus:border-[#71BCFF] focus:bg-white transition"
-            />
-            <button
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-300 hover:text-gray-500"
-            >
-              {showPassword ? (
+            }
+            rightIcon={
+              showPassword ? (
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
                 </svg>
@@ -86,29 +115,23 @@ const Login = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
-              )}
-            </button>
-          </div>
+              )
+            }
+            onRightClick={() => setShowPassword(!showPassword)}
+          />
         </div>
 
         {/* Remember Me */}
         <div className="flex items-center gap-2 mb-6">
-          <button
-            onClick={() => setRemember(!remember)}
-            className={`w-4 h-4 rounded border flex items-center justify-center transition ${remember ? "bg-[#71BCFF] border-[#71BCFF]" : "border-gray-300 bg-white"
-              }`}
-          >
-            {remember && (
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-              </svg>
-            )}
-          </button>
+          <Checkbox checked={remember} onClick={() => setRemember(!remember)} />
           <span className="text-sm text-gray-500">Remember me for 30 days</span>
         </div>
 
-        {/* Sign In Button */}
-        <button className="w-full bg-[#71BCFF] hover:bg-[#5aadf0] text-white font-semibold py-3.5 rounded-2xl transition-all duration-200 shadow-md hover:shadow-lg text-sm mb-5">
+        {/* Sign In */}
+        <button
+          onClick={() => navigate("/chat")}
+          className="w-full bg-[#71BCFF] hover:bg-[#5aadf0] text-white font-semibold py-3.5 rounded-2xl transition-all duration-200 shadow-md hover:shadow-lg text-sm mb-5"
+        >
           Sign In
         </button>
 
@@ -133,7 +156,9 @@ const Login = () => {
         {/* Sign Up Link */}
         <p className="text-center text-sm text-gray-500">
           Don't have an account?{" "}
-          <a href="/register" className="text-[#71BCFF] font-semibold hover:underline">Create an account</a>
+          <button onClick={() => navigate("/register")} className="text-[#71BCFF] font-semibold hover:underline">
+            Create an account
+          </button>
         </p>
       </div>
     </div>
