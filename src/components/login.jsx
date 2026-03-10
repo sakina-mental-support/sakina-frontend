@@ -2,20 +2,17 @@ import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
-
 const InputField = ({ type, placeholder, value, onChange, icon, rightIcon, onRightClick }) => (
   <div className="relative">
     {icon && (
-      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300">
-        {icon}
-      </span>
+      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-300">{icon}</span>
     )}
     <input
       type={type}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
-      className={`w-full pl-10 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm text-gray-700 outline-none focus:border-[#71BCFF] focus:bg-white transition`}
+      className="w-full pl-10 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-2xl text-sm text-gray-700 outline-none focus:border-[#71BCFF] focus:bg-white transition"
     />
     {rightIcon && (
       <button
@@ -52,7 +49,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-      <div 
+      <div
         className="bg-white px-6 py-8 font-sans"
         style={{
           width: "390px",
@@ -61,12 +58,12 @@ const Login = () => {
           display: "flex",
           flexDirection: "column",
           position: "relative",
-          overflow: "hidden"
+          overflow: "hidden",
         }}
       >
         {/* Icon */}
         <div className="flex flex-col items-center mb-6">
-          <div className="w-20 h-15 rounded-2xl bg-[#e8f4ff] flex items-center justify-center mb-6 ">
+          <div className="w-20 h-15 rounded-2xl bg-[#e8f4ff] flex items-center justify-center mb-6">
             <img src={logo} alt="Sakina Logo" />
           </div>
           <h1 className="text-2xl font-bold text-gray-900 mb-1">Welcome to Sakina</h1>
@@ -93,7 +90,13 @@ const Login = () => {
         <div className="mb-3">
           <div className="flex items-center justify-between mb-1.5">
             <label className="text-sm font-semibold text-gray-700">Password</label>
-            <a href="#" className="text-xs text-[#71BCFF] hover:underline">Forgot?</a>
+            {/* ← Forgot? now navigates to /forgot-password */}
+            <button
+              onClick={() => navigate("/forgot-password")}
+              className="text-xs text-[#71BCFF] hover:underline"
+            >
+              Forgot?
+            </button>
           </div>
           <InputField
             type={showPassword ? "text" : "password"}
@@ -156,7 +159,10 @@ const Login = () => {
         {/* Sign Up Link */}
         <p className="text-center text-sm text-gray-500">
           Don't have an account?{" "}
-          <button onClick={() => navigate("/register")} className="text-[#71BCFF] font-semibold hover:underline">
+          <button
+            onClick={() => navigate("/register")}
+            className="text-[#71BCFF] font-semibold hover:underline"
+          >
             Create an account
           </button>
         </p>
