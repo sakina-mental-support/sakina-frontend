@@ -1,19 +1,16 @@
-import React from 'react'
-
-import { BrowserRouter, NavLink, Routes, Route } from "react-router-dom"
-import { Link } from "react-router-dom";
-
-
-
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from './components/Register';
-import BottomNavbar from './components/BottomNavbar';
 import Login from './components/login';
 import ChatPage from './components/ChatPage';
 import Profile from './components/Profile';
 import Exercises from './components/exercises';
+import ExerciseDetail from './components/ExerciseDetail';
 import MoodTracker from './components/MoodTracker';
+import MoodAnalytics from './components/MoodAnalytics';
 import ForgotPassword from './components/Forgotpassword';
 import CheckEmail from './components/Checkemail';
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -26,12 +23,12 @@ const App = () => {
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/exercises" element={<Exercises />} />
+        <Route path="/exercise-detail" element={<ExerciseDetail />} />
         <Route path="/mood" element={<MoodTracker />} />
-
-
+        <Route path="/mood-analytics" element={<MoodAnalytics />} />
       </Routes>
     </BrowserRouter>
-
-
   );
-};export default App;
+};
+
+export default App;

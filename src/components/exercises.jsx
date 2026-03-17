@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BottomNavbar from './BottomNavbar';
 
 const ExercisesPage = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="min-h-screen bg-[#e5e7eb] flex items-center justify-center p-4 font-sans">
-            {/* Mobile Frame Container */}
             <div
                 className="bg-[#f8f9fa] shadow-2xl relative"
                 style={{
@@ -24,44 +26,39 @@ const ExercisesPage = () => {
                 {/* Scrollable Content */}
                 <div className="flex-1 overflow-y-auto px-6 pb-32 space-y-6 scrollbar-hide">
 
-                    {/* 1. Breathing Exercise - TOP PICK CARD (Matches Screenshot exactly) */}
+                    {/* Breathing Exercise - TOP PICK */}
                     <div className="bg-white rounded-[32px] overflow-hidden shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-gray-100">
-                        {/* Image Header */}
                         <div className="h-[180px] w-full overflow-hidden relative">
-                            {/* High Quality Meditation Stock Placeholder matching the prompt style */}
                             <img
                                 src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                                 alt="Meditation"
                                 className="w-full h-full object-cover"
                             />
                         </div>
-
-                        {/* Card Body */}
                         <div className="p-6">
                             <div className="inline-flex items-center px-[14px] py-[6px] bg-[#f0f7ff] text-[#71BCFF] text-[10px] uppercase font-bold tracking-widest rounded-full mb-3">
                                 Top Pick
                             </div>
-
                             <h2 className="text-[20px] font-bold text-[#111827] mb-1.5">Breathing Exercise</h2>
                             <p className="text-[14px] font-medium text-[#71BCFF] mb-3">5 mins • Relaxation</p>
-
                             <p className="text-[13px] text-gray-500 leading-[1.6] mb-6">
                                 Deep belly breathing to reduce stress and improve focus.
                             </p>
-
-                            <button className="w-full bg-[#71BCFF] hover:bg-[#5aadf0] active:scale-[0.98] transition-all text-white font-semibold py-3.5 rounded-full text-[15px]">
+                            <button
+                                onClick={() => navigate("/exercise-detail")}
+                                className="w-full bg-[#71BCFF] hover:bg-[#5aadf0] active:scale-[0.98] transition-all text-white font-semibold py-3.5 rounded-full text-[15px]"
+                            >
                                 Start Now
                             </button>
                         </div>
                     </div>
 
-                    {/* 2. Browse Exercises Header / Link */}
+                    {/* More Activities */}
                     <div className="flex items-center justify-between pt-2 mb-[2px]">
                         <h2 className="text-[19px] font-bold text-[#111827]">More Activities</h2>
-
                     </div>
 
-                    {/* 3. Guided Meditation */}
+                    {/* Guided Meditation */}
                     <div className="bg-white rounded-[24px] overflow-hidden shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] border border-gray-100 p-4 flex flex-col gap-4">
                         <div className="flex items-start gap-4">
                             <div className="w-[50px] h-[50px] rounded-[16px] bg-[#ecfdf5] flex items-center justify-center text-[#10b981] flex-shrink-0">
@@ -76,12 +73,15 @@ const ExercisesPage = () => {
                                 </p>
                             </div>
                         </div>
-                        <button className="w-full bg-[#f8f9fa] hover:bg-gray-100 text-[#111827] font-semibold py-3 rounded-[16px] text-[15px] transition-colors border border-gray-100">
+                        <button
+                            onClick={() => navigate("/exercise-detail")}
+                            className="w-full bg-[#f8f9fa] hover:bg-gray-100 text-[#111827] font-semibold py-3 rounded-[16px] text-[15px] transition-colors border border-gray-100"
+                        >
                             Begin Session
                         </button>
                     </div>
 
-                    {/* 4. Daily Journaling */}
+                    {/* Daily Journaling */}
                     <div className="bg-white rounded-[24px] overflow-hidden shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] border border-gray-100 p-4 flex flex-col gap-4">
                         <div className="flex items-start gap-4">
                             <div className="w-[50px] h-[50px] rounded-[16px] bg-[#fffbeb] flex items-center justify-center text-[#f59e0b] flex-shrink-0">
@@ -96,12 +96,15 @@ const ExercisesPage = () => {
                                 </p>
                             </div>
                         </div>
-                        <button className="w-full bg-[#f8f9fa] hover:bg-gray-100 text-[#111827] font-semibold py-3 rounded-[16px] text-[15px] transition-colors border border-gray-100">
+                        <button
+                            onClick={() => navigate("/exercise-detail")}
+                            className="w-full bg-[#f8f9fa] hover:bg-gray-100 text-[#111827] font-semibold py-3 rounded-[16px] text-[15px] transition-colors border border-gray-100"
+                        >
                             Write Entry
                         </button>
                     </div>
 
-                    {/* 5. Gratitude Practice */}
+                    {/* Gratitude Practice */}
                     <div className="bg-white rounded-[24px] overflow-hidden shadow-[0_2px_12px_-4px_rgba(0,0,0,0.04)] border border-gray-100 p-4 flex flex-col gap-4 mb-4">
                         <div className="flex items-start gap-4">
                             <div className="w-[50px] h-[50px] rounded-[16px] bg-[#fdf2f8] flex items-center justify-center text-[#ec4899] flex-shrink-0">
@@ -116,7 +119,10 @@ const ExercisesPage = () => {
                                 </p>
                             </div>
                         </div>
-                        <button className="w-full bg-[#f8f9fa] hover:bg-gray-100 text-[#111827] font-semibold py-3 rounded-[16px] text-[15px] transition-colors border border-gray-100">
+                        <button
+                            onClick={() => navigate("/exercise-detail")}
+                            className="w-full bg-[#f8f9fa] hover:bg-gray-100 text-[#111827] font-semibold py-3 rounded-[16px] text-[15px] transition-colors border border-gray-100"
+                        >
                             Start Practice
                         </button>
                     </div>

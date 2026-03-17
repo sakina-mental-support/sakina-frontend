@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BottomNavbar from "./BottomNavbar";
 
 const MOODS = [
@@ -12,6 +13,7 @@ const MOODS = [
 const DAYS = ["S", "M", "T", "W", "T", "F", "S"];
 
 const MoodTracker = () => {
+  const navigate = useNavigate();
   const [selectedMood, setSelectedMood] = useState("calm");
   const [note, setNote] = useState("");
   const [selectedDay, setSelectedDay] = useState(5);
@@ -148,9 +150,22 @@ const MoodTracker = () => {
           </div>
 
           {/* Submit Button */}
-          <button className="w-full bg-[#71BCFF] hover:bg-[#5aadf0] text-white font-semibold py-4 rounded-2xl transition-all duration-200 shadow-md hover:shadow-lg text-sm mb-2">
+          <button className="w-full bg-[#71BCFF] hover:bg-[#5aadf0] text-white font-semibold py-4 rounded-2xl transition-all duration-200 shadow-md hover:shadow-lg text-sm mb-3">
             Submit Daily Mood
           </button>
+
+          {/* Mood Analysis Button */}
+          <button
+            type="button"
+            onClick={() => navigate("/mood-analytics")}
+            className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl border-2 border-[#71BCFF] text-[#71BCFF] font-semibold text-sm hover:bg-[#f0f8ff] transition-all duration-200 mb-2"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+            </svg>
+            Mood Analysis
+          </button>
+
         </div>
 
         {/* Bottom Nav */}
